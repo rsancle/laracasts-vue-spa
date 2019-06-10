@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/stats', function () {
+Route::middleware('auth:api')->get('/stats', function (Request $request) {
     return [
         'totalPosts' => 100,
         'favoritePosts' => 10

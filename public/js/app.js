@@ -1844,7 +1844,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      userData: false,
+      token: null,
+      message: null
+    };
+  },
+  methods: {
+    fetchData: function fetchData() {
+      var _this = this;
+
+      axios.get("http://127.0.0.1:8000/api/user?api_token=".concat(this.token))["catch"](function (error) {
+        _this.message = error.response.data.error;
+        _this.userData = null;
+      }).then(function (_ref) {
+        var data = _ref.data;
+        _this.userData = data;
+        _this.message = null;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -1883,7 +1917,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('http://127.0.0.1:8000/api/stats').then(function (_ref) {
+    axios.get('http://127.0.0.1:8000/api/stats?api_token=q6Z8AMRakjsVoGSOILGWmEUGtoOTUMbgrgU3gyoBsT8aESIjVwHkKCmrgSCy').then(function (_ref) {
       var data = _ref.data;
       _this.totalPosts = data.totalPosts;
       _this.favoritePosts = data.favoritePosts;
@@ -2472,7 +2506,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("\n    About Me\n")])
+  return _c("div", [
+    _c("h1", [_vm._v("\n        User Info\n    ")]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.token,
+          expression: "token"
+        }
+      ],
+      attrs: { type: "text", placeholder: "API Token" },
+      domProps: { value: _vm.token },
+      on: {
+        keyup: function($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          return _vm.fetchData($event)
+        },
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.token = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm.message
+      ? _c("p", { staticClass: "text-red italic text-small" })
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.userData
+      ? _c("ul", [
+          _c("li", [
+            _c("strong", [_vm._v("Name: ")]),
+            _vm._v(_vm._s(_vm.userData.name))
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("strong", [_vm._v("email: ")]),
+            _vm._v(_vm._s(_vm.userData.email))
+          ])
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

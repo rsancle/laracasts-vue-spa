@@ -23,7 +23,7 @@
             }
         },
         mounted() {
-            axios.get('http://127.0.0.1:8000/api/stats').then( ({data}) => {
+            axios.get('http://127.0.0.1:8000/api/stats?api_token=q6Z8AMRakjsVoGSOILGWmEUGtoOTUMbgrgU3gyoBsT8aESIjVwHkKCmrgSCy').then( ({data}) => {
                 this.totalPosts = data.totalPosts;
                 this.favoritePosts = data.favoritePosts;
             });
