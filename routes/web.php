@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/{any?}', function () {
     return view('app');
-});
+})->where('any', '.*'); //Regex dot->any char, *-> one or more

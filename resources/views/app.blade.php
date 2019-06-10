@@ -19,8 +19,11 @@
                         <section class="mb-8">
                             <h5 class="uppercase font-bold mb-4">The Brand</h5>
                             <ul class="list-reset">
-                                <li><router-link to='/'>Home</router-link></li>
+                                <li><router-link to='/' exact>Home</router-link></li>
                                 <li><router-link to='/about'>About</router-link></li>
+                                <li><router-link to='/projects'>Projects</router-link></li>
+                                <li><router-link to='/blog'>Blog</router-link></li>
+                                <li><router-link to='/contact'>Contact</router-link></li>
                             </ul>
                         </section>
 

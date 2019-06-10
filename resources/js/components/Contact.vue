@@ -1,6 +1,6 @@
 <template>
     <h1>
-        About Me
+        Contact
     </h1>
 </template>
 
